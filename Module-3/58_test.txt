@@ -1,0 +1,4 @@
+This is python.
+This is program base on file handling 
+Using file handling we can read any line from a file
+but we read only random lines from file.
