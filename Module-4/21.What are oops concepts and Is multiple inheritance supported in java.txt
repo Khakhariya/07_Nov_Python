@@ -1,0 +1,51 @@
+--> oops is object oriented programming.
+--> python is also object oriented programming
+    language.
+
+1) Class :- A class is a collection of objects.
+            A class contains the blueprints of objects or 
+            The prototype from which the objects are being created. 
+
+2) Object :- Object is instance of class
+
+3) Inheritance :-Reusability of Class
+    
+--> Types of Inheritance :-
+                            1_ Single Inheritance
+                            2_ Multiple Inheritance
+                            3_ Multilevel Inheritance
+                            4_ Multiple Inheritance.
+                            5_ Hybrid Inheritance.
+
+4) Polymorphism :- It is called that one name and many form  or 
+                   different work but name same.
+
+--> Types of Polymorphism :-
+                            1_ Overloading
+                            2_ Overriding
+
+5) Encapsulation :- wrapping up the data in one class or bind up
+                    the data in class it is called Encapsulation.
+
+                    Encapsulation is a example of capsul in which
+                    powder of many medicines.
+
+6) Access specifier or modifier :-
+                                1_Public
+                                2_Private
+
+B) Is multiple inheritance supported in java ?
+
+--> Yes ,multiple inheritance is supported in java.
+
+--> It is the ability of a class to implement more than one interface.
+--> An object can have multiple types:
+    The type of its own class and the types of all the interfaces that the class implements.
+
+    Types of Inheritance in java :-
+    
+    1) Single-level inheritance.
+    2) Multi-level Inheritance.
+    3) Hierarchical Inheritance.
+    4) Multiple Inheritance.
+    5) Hybrid Inheritance.

@@ -1,0 +1,17 @@
+--> What is File function in python :-
+    Python has a built-in function open() to open a file. Which accepts two
+    arguments, file name and access mode in which the file is accessed.
+    The function returns a file object which can be used to perform various
+    operations like reading, writing, etc.
+
+--> What is keywords to create and write file :- 
+    Using open() to open file and using write,read and append mode in access
+    mode.
+    1) create a file :
+        (x) : file create only
+        (w) : file create and write
+        (a) : file create and write
+    2) write in file :
+        (w) : write in file but old data remove
+        (a) : write in file and save old data
+        (r+): write in file and also read from file

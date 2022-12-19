@@ -1,0 +1,17 @@
+--> There are two types of error in python :-
+    1) Syntax Error
+    2) Exception Error
+
+--> If There is an error in program at run time error will shown and program stop.
+    and Next condition true but not shown that's why we use exception handling.
+
+--> We see above that if our first condition is False so program stop and also our 
+    second condition is true either it will not run due to stop the program from
+    error detect.
+
+--> Using exception handling we can prevents to stop the program at execution time
+    so we can save our program.
+
+--> Exception is an error that happens during the execution of a program.
+    Whenever there is an error, Python generates an exception that could be handled.
+    It basically prevents the program from getting crashed.

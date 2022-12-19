@@ -1,0 +1,5 @@
+--> Compiler show the syntax error and program 
+    crashed at a time.
+
+--> It simply evaluates to False and does not 
+    raise any exception.
