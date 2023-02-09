@@ -1,0 +1,9 @@
+[Q-1] Why Django should be used for web-development? Explain how you can create a project in Django?
+
+--> Django is the best framework for web applications, as it allows developers to use modules for faster development. As a developer, you can make use 
+    of these modules to create apps, websites from an existing source. It speeds up the development process greatly, as you do not have to code 
+    everything from scratch.
+
+--> 1) first install django in cmd :-  pip install django
+    2) Then create project :- django-admin startproject project-name.
+    3) Then run the server :- python manage. py runserver.
