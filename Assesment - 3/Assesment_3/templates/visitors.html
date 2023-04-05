@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="col-md-6 my-2">
+            <label for="validationDefault01" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" id="validationDefault01" required>
+        </div>
+        <div class="col-md-6 my-2">
+            <label for="validationDefault02" class="form-label">Vehicle_no</label>
+            <input type="text" name="vehicle_no" class="form-control" id="validationDefault02" required>
+        </div>
+        <div class="col-md-3 my-2">
+            <label for="validationDefault05" class="form-label">Total Visitors</label>
+            <input type="number" name="total_visitor" class="form-control" id="validationDefault05" required>
+        </div>
+        <div class="col-md-3 my-2">
+            <label for="validationDefault03" class="form-label">House No.</label>
+            <input type="text" name="visit_house_no" class="form-control" id="validationDefault03" required>
+        </div>
+        <div class="col my-5">
+            <button type="submit" class="btn btn-primary btn-lg">
+                Entry
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

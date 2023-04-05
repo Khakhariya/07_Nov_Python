@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="mx-5 my-2">
+    <table class="table text-uppercase">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Vehicle_No</th>
+                <th>Total_visitor</th>
+                <th>House No.</th>
+                <th>In-Time</th>
+                <th>Out-Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        {% for i in vis_data %}
+        <tbody>
+            <tr>
+                <th>{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.vehicle_no}}</td>
+                <td>{{i.total_visitor}}</td>
+                <td>{{i.visit_house_no}}</td>
+                <td>{{i.created}}</td>
+                <td>{{i.out_time}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{i.id}}">
+                        Edit
+                    </button>
+                    {% if category == 'User' %}
+                    <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasTop{{i.id}}" aria-controls="offcanvasTop">Delete</button>
+
+                    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop{{i.id}}"
+                        aria-labelledby="offcanvasTopLabel">
+                        <div class="offcanvas-header">
+                            <h5 id="offcanvasTopLabel">Confirmations</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <p>Do you Really Want to delete This Data ?</p><br>
+                            <a class="btn btn-danger" href="/deletevisitor/{{i.id}}">Delete</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
+
+        </tbody>
+
+        <!-- Modal -->
+        <div class="modal fade" id="{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add Members form start -->
+                        <div class="container">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="col-md-3">
+                                    <label for="validationDefault05" class="form-label">Visitor No.</label>
+                                    <input type="number" value="{{i.id}}" name="id" class="form-control"
+                                        id="validationDefault05" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDefault01" class="form-label">Name</label>
+                                    <input type="text" name="name" value="{{i.name}}" class="form-control"
+                                        id="validationDefault01" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDefault02" class="form-label">Vehicle_no</label>
+                                    <input type="text" value="{{i.vehicle_no}}" name="vehicle_no" class="form-control"
+                                        id="validationDefault02" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault05" class="form-label">Total Visitors</label>
+                                    <input type="number" name="total_visitor" value="{{i.total_visitor}}"
+                                        class="form-control" id="validationDefault05" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault03" class="form-label">House No.</label>
+                                    <input type="text" name="visit_house_no" value="{{i.visit_house_no}}"
+                                        class="form-control" id="validationDefault03" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault03" class="form-label">Out Time</label>
+                                    <input type="datetime-local" name="out_time" value="{{i.out_time}}"
+                                        class="form-control" id="validationDefault03" required>
+                                </div>
+                                <div class="col my-5">
+                                    <button type="submit" class="btn btn-primary">
+                                        Out
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- Add Members form end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

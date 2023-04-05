@@ -1,0 +1,125 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container" style="margin-bottom: 2cm; margin-top: 2cm; ">
+    <center>
+        <h1 style="font-size: 35mm; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Edit
+            Event Details</h1>
+    </center>
+</div>
+
+<!-- events data start -->
+<table class="table mx-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Event</th>
+            <th>Time</th>
+            <th>Image</th>
+            <th>Information</th>
+            <th>Comments</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    {% for i in eventdata %}
+    <tbody>
+        <tr>
+            <th>{{i.id}}</th>
+            <td>{{i.event_name}}</td>
+            <td>{{i.event_time}}</td>
+            <td>
+                <img style="width: 4cm;" src="/{{i.event_img}}" alt="">
+            </td>
+            <td>
+                <div style="width: 6cm;">
+                    {{i.event_information}}
+                </div>
+            </td>
+            <td>
+                <div style="width: 6cm;">
+                    {{i.comments}}
+                </div>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{i.id}}">
+                    Edit
+                </button>
+                <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop{{i.id}}"
+                    aria-controls="offcanvasTop">Delete</button>
+
+                <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop{{i.id}}"
+                    aria-labelledby="offcanvasTopLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasTopLabel">Confirmations</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <p>Do you Really Want to delete This Data ?</p><br>
+                        <a class="btn btn-danger" href="/deleteevent/{{i.id}}">Delete</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+
+    <!-- Modal -->
+    <div class="modal fade" id="{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add Members form start -->
+                    <div class="container my-5">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col">
+                                <label for="validationDefault01" class="form-label">ID</label>
+                                <input type="number" name="id" value="{{i.id}}" id="" class="form-control"
+                                    id="validationDefault01" required>
+                            </div>
+                            <div class="form-floating my-5">
+                                <input type="text" name="event_name" value="{{i.event_name}}" class="form-control"
+                                    placeholder="name@example.com">
+                                <label for="floatingTextarea">Event name</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="date" name="event_time" value="{{event_time}}" class="form-control">
+                            </div>
+
+                            <div class="my-5">
+                                <input class="form-control form-control-lg" name="event_img" value="/{{i.event_img}}"
+                                    id="formFileLg" type="file">
+                            </div>
+
+                            <div class="form-floating">
+                                <textarea class="form-control" name="event_information" style="height: 4cm;"
+                                    placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">{{i.event_information}}</label>
+                            </div>
+
+                            <div class="form-floating my-5">
+                                <textarea class="form-control" name="comments" placeholder="Leave a comment here"
+                                    id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">{{i.comments}}</label>
+                            </div>
+                            <div class="my-5">
+                                <button type="submit" class="btn btn-primary btn-lg">Add Event</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Add Members form end -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</table>
+<!-- events data end -->
+
+{% endblock %}

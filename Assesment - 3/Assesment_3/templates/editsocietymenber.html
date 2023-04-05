@@ -1,0 +1,167 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container" style="margin-bottom: 2cm; margin-top: 2cm; ">
+    <center>
+        <h1 style="font-size: 35mm; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Edit
+            Society Member</h1>
+    </center>
+</div>
+
+<!-- Search Option start -->
+<div class="container" style="margin-bottom: 2cm; ">
+    <center>
+        <div class="input-group" style="width: 8cm;">
+            <input type="text" class="form-control" placeholder="Search Member" aria-label="Search username"
+                aria-describedby="button-addon2">
+            <button class="btn btn-success" type="button" id="button-addon2">Button</button>
+        </div>
+    </center>
+</div>
+<!-- Search Option end -->
+
+<table class="table mx-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Mobile</th>
+            <th>BHK</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    {% for i in memberdata %}
+    <tbody>
+        <tr>
+            <th>{{i.id}}</th>
+            <td>{{i.firstname}}</td>
+            <td>{{i.lastname}}</td>
+            <td>{{i.username}}</td>
+            <td>{{i.password}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.state}}</td>
+            <td>{{i.Mobile}}</td>
+            <td>{{i.bhk}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{i.id}}">
+                    Edit
+                </button>
+                <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop{{i.id}}"
+                    aria-controls="offcanvasTop">Delete</button>
+
+                <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop{{i.id}}"
+                    aria-labelledby="offcanvasTopLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasTopLabel">Confirmations</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                        <div class="offcanvas-body">
+                            <p>Do you Really Want to delete This Data ?</p><br>
+                            <input type="number" value="{{i.id}}" class="form-control">
+                            <a class="btn btn-danger" href="/deletemember/{{i.id}}">Delete</a>
+                        </div>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+
+    <!-- Modal -->
+    <div class="modal fade" id="{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add Members form start -->
+                    <div class="container my-5">
+                        <form method="post" class="row g-5">
+                            {% csrf_token %}
+                            <div class="col">
+                                <label for="validationDefault01" class="form-label">ID</label>
+                                <input type="number" name="id" value="{{i.id}}" id="" class="form-control"
+                                    id="validationDefault01" required>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefault01" class="form-label">First name</label>
+                                <input type="text" name="firstname" value="{{i.firstname}}" class="form-control"
+                                    id="validationDefault01" required>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefault02" class="form-label">Last name</label>
+                                <input type="text" name="lastname" value="{{i.lastname}}" class="form-control"
+                                    id="validationDefault02" required>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefaultUsername" class="form-label">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                    <input type="text" name="username" value="{{i.username}}" class="form-control"
+                                        id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefault02" class="form-label">password</label>
+                                <input type="password" name="password" value="{{i.password}}" class="form-control"
+                                    id="validationDefault02" required>
+                            </div>
+
+                            <div class="col">
+                                <label for="validationDefault03" class="form-label">City</label>
+                                <input type="text" name="city" value="{{i.city}}" class="form-control"
+                                    id="validationDefault03" required>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefault04" class="form-label">State</label>
+                                <select class="form-select" name="state" id="validationDefault04" required>
+                                    <option selected>{{i.state}}</option>
+                                    <option>Gujarat</option>
+                                    <option>Delhi</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefault04" class="form-label">Room</label>
+                                <select class="form-select" name="bhk" id="validationDefault04" required>
+                                    <option selected>{{i.bhk}}</option>
+                                    <option value="2">2 BHK</option>
+                                    <option value="3">3 BHK</option>
+                                    <option value="4">4 BHK</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="validationDefault05" class="form-label">Mo.Number</label>
+                                <input type="number" name="Mobile" value="{{i.Mobile}}" class="form-control"
+                                    id="validationDefault05" required>
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2"
+                                        required>
+                                    <label class="form-check-label" for="invalidCheck2">
+                                        Agree to terms and conditions
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary" type="submit">Add changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Add Members form end -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

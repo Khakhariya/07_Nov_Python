@@ -1,0 +1,114 @@
+{% extends "base.html"%}
+{% block content %}
+
+{% for i in trans_data %}
+
+<div class="container my-5">
+    <form method="post" class="row g-5">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Per Square ft Rate</label>
+            <input type="number" class="form-control" value="{{i.rate}}" name="rate" id="validationDefault01">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault02" class="form-label">Maintenance Rate</label>
+            <input type="number" value="{{i.maintenance_rate}}" name="maintenance_rate" class="form-control"
+                id="validationDefault02">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">parking Rate</label>
+            <input type="number" value="{{i.parking}}" name="parking" class="form-control" id="validationDefault03">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Event Fund</label>
+            <input type="number" value="{{i.event_fund}}" name="event_fund" id="validationDefault04"
+                class="form-control">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault05" class="form-label">Event Details</label>
+            <input type="text" value="{{i.event}}" name="event" id="validationDefault05" class="form-control">
+        </div>
+    </form>
+</div>
+<br> <br>
+<div class="container" style="width: 10cm;">
+    <form method="post" class="d-flex" role="search">
+        {% csrf_token %}
+        <input class="form-control me-2" name="id" type="search" placeholder="Search Customer " aria-label="Search">
+        <button class="btn btn-success mx-2" type="submit">Search</button>
+    </form>
+</div>
+<br> <br>
+<div class="container" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;">
+    <h2>-: Customer Details :- </h2>
+</div>
+<br>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Mobile</th>
+                <th>BHK</th>
+                <th>Generate Bill</th>
+            </tr>
+        </thead>
+        {% if memberdata.id is not none %}
+        <tbody>
+            <tr>
+                <th>{{memberdata.id}}</th>
+                <td>{{memberdata.firstname}}</td>
+                <td>{{memberdata.lastname}}</td>
+                <td>{{memberdata.username}}</td>
+                <td>{{memberdata.password}}</td>
+                <td>{{memberdata.city}}</td>
+                <td>{{memberdata.state}}</td>
+                <td>{{memberdata.Mobile}}</td>
+                <td>{{memberdata.bhk}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#{{memberdata.id}}">
+                        Generate-Bill
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <!-- Modal -->
+        <div class="modal fade" id="{{memberdata.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Monthly Bill</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container"
+                            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                            <ol>
+                                <li>Per Square Foot rate = {{per_square_rate}}</li>
+                                <li>Maintenance Charges = {{i.maintenance_rate}}</li>
+                                <li>Parking Charges = {{i.parking}}</li>
+                                <li>Event Fund = {{i.event_fund}}</li>
+
+                            </ol>
+                            <hr>
+                            <Label>Total Charges :- {{Total_charges}}</Label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </table>
+</div>
+{% endfor %}
+
+
+{% endblock%}

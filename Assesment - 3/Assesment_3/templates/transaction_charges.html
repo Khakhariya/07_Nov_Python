@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container my-5">
+    <form method="post" class="row g-5">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Per Square ft Rate</label>
+            <input type="number" value="{{trans_data.rate}}" class="form-control" name="rate" id="validationDefault01">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault02" class="form-label">Maintenance Rate</label>
+            <input type="number" value="{{trans_data.maintenance_rate}}" name="maintenance_rate" class="form-control"
+                id="validationDefault02">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">parking Rate</label>
+            <input type="number" value="{{trans_data.parking}}" name="parking" class="form-control" id="validationDefault03">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Event Fund</label>
+            <input type="number" value="{{trans_data.event_fund}}" name="event_fund" id="validationDefault04"
+                class="form-control">
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault05" class="form-label">Event Details</label>
+            <input type="text" value="{{trans_data.event}}" name="event" id="validationDefault05" class="form-control">
+        </div>
+        <div>
+            <button class="btn btn-success">Add Charges</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock%}

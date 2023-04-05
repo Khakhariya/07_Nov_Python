@@ -1,0 +1,39 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container" style="margin-bottom: 2cm; margin-top: 2cm; ">
+    <center>
+        <h1 style="font-size: 35mm; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Add Events</h1>
+    </center>
+</div>
+
+<div class="container ">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-floating my-5">
+            <input type="text" name="event_name" class="form-control" placeholder="name@example.com">
+            <label for="floatingTextarea">Event name</label>
+        </div>
+        <div class="form-floating">
+            <input type="date" name="event_time" class="form-control" >
+        </div>
+
+        <div class="my-5">
+            <input class="form-control form-control-lg" name="event_img" id="formFileLg" type="file">
+        </div>
+
+        <div class="form-floating">
+            <textarea class="form-control" name="event_information" style="height: 4cm;" placeholder="Leave a comment here" id="floatingTextarea" ></textarea>
+            <label for="floatingTextarea">Event Information</label>
+        </div>
+
+        <div class="form-floating my-5">
+            <textarea class="form-control" name="comments" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Comments</label>
+        </div>
+        <div class="my-5">
+            <button type="submit" class="btn btn-primary btn-lg">Add Event</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

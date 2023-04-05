@@ -1,0 +1,31 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container">
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for i in eventdata %}
+        <div class="col">
+
+            <div class="card">
+                <img src="/{{i.event_img}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.event_name}}</h5>
+                    <p class="card-text">
+                    <ol>
+                        <li> Time :- {{i.event_time}}</li>
+                        <li> Information :- {{i.event_information}}</li>
+                        <li> Comments :- {{i.comments}}</li>
+                    </ol>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        {% endfor%}
+    </div>
+
+</div>
+
+
+{% endblock %}
